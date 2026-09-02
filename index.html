@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>穂の記憶 -古代日本史-</title>
+<meta name="description" content="縄文から奈良時代までの古代日本史を、記録と考察でたどる個人アーカイブ。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f4eed8;
+    --paper-deep: #ece1bd;
+    --ink: #2e2a1f;
+    --ink-soft: #55503f;
+    --ear-gold: #c69a2a;
+    --ear-gold-deep: #a97f1c;
+    --young-green: #9caf3c;
+    --young-green-deep: #7c8f2a;
+    --bronze: #7a5c3e;
+    --line: rgba(46,42,31,0.14);
+    --max: 1080px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .mincho{
+    font-family: "Shippori Mincho", serif;
+    letter-spacing: 0.04em;
+  }
+
+  a{ color: inherit; }
+
+  /* ---------- Header / Nav ---------- */
+  header.site-head{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px clamp(20px, 5vw, 56px);
+    background: rgba(244, 238, 216, 0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand{
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+  .brand small{
+    display: block;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  nav.site-nav ul{
+    list-style: none;
+    display: flex;
+    gap: clamp(14px, 3vw, 32px);
+    margin: 0;
+    padding: 0;
+  }
+  nav.site-nav a{
+    text-decoration: none;
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  nav.site-nav a:hover,
+  nav.site-nav a:focus-visible{
+    border-color: var(--ear-gold-deep);
+    color: var(--ear-gold-deep);
+  }
+  nav.site-nav a[aria-current="page"]{
+    border-color: var(--young-green-deep);
+    color: var(--young-green-deep);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    min-height: min(86vh, 780px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 82% 18%, rgba(198,154,42,0.22), transparent 55%),
+      linear-gradient(180deg, var(--paper) 0%, var(--paper-deep) 100%);
+  }
+
+  .hero-inner{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(24px, 5vw, 64px);
+    align-items: center;
+  }
+
+  .hero-title{
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+    padding: 6px 0;
+    border-right: 2px solid var(--ear-gold-deep);
+    padding-right: clamp(12px, 2vw, 22px);
+  }
+
+  .hero-text{
+    max-width: 480px;
+  }
+  .hero-eyebrow{
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    color: var(--bronze);
+    margin-bottom: 14px;
+  }
+  .hero-text h2{
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .hero-text p{
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    margin: 0 0 14px;
+  }
+  .hero-text .accent{
+    color: var(--ear-gold-deep);
+    font-weight: 700;
+  }
+
+  /* Rice-ear SVG motif */
+  .ear-field{
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 46%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+  .ear-field svg{ width: 100%; height: 100%; display: block; }
+  .ear{
+    transform-origin: bottom center;
+    animation: sway 5.5s ease-in-out infinite;
+  }
+  .ear:nth-child(odd){ animation-duration: 6.2s; }
+  .ear:nth-child(3n){ animation-delay: -1.4s; }
+  .ear:nth-child(4n){ animation-delay: -2.6s; }
+
+  @keyframes sway{
+    0%, 100%{ transform: rotate(-2.2deg); }
+    50%{ transform: rotate(2.2deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ear{ animation: none; }
+  }
+
+  /* ---------- Intro ---------- */
+  .intro{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 96px) clamp(20px, 5vw, 56px) clamp(24px, 5vw, 40px);
+  }
+  .intro h2{
+    font-size: 1.5rem;
+    margin: 0 0 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .intro h2::before{
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: var(--young-green-deep);
+    display: inline-block;
+  }
+  .intro p{
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  /* ---------- Era timeline (strata) ---------- */
+  .strata{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px) clamp(72px, 8vw, 110px);
+  }
+  .strata h2{
+    font-size: 1.5rem;
+    margin: 0 0 8px;
+  }
+  .strata .lead{
+    color: var(--ink-soft);
+    margin: 0 0 40px;
+    max-width: 60ch;
+  }
+
+  .era-list{
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid var(--line);
+    margin-left: 8px;
+  }
+
+  .era{
+    position: relative;
+    padding: 26px 0 26px 32px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .era:last-child{ border-bottom: none; }
+
+  .era::before{
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 34px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg-dot, var(--ear-gold));
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--line);
+  }
+
+  .era[data-era="jomon"]{ --bg-dot: #8a9b52; }
+  .era[data-era="yayoi"]{ --bg-dot: #c69a2a; }
+  .era[data-era="kofun"]{ --bg-dot: #7a5c3e; }
+  .era[data-era="asuka"]{ --bg-dot: #9caf3c; }
+  .era[data-era="nara"]{ --bg-dot: #a97f1c; }
+
+  .era-head{
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .era-name{
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+  .era-period{
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+  .era p{
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    font-size: 0.94rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site-foot{
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 56px) 28px;
+  }
+  .foot-grid{
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(244,238,216,0.18);
+  }
+  .foot-brand .mincho{ font-size: 1.15rem; }
+  .foot-brand p{
+    font-size: 0.82rem;
+    color: rgba(244,238,216,0.65);
+    max-width: 34ch;
+    margin-top: 8px;
+  }
+  .foot-nav ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+  .foot-nav a{
+    text-decoration: none;
+    font-size: 0.86rem;
+    color: rgba(244,238,216,0.85);
+  }
+  .foot-nav a:hover{ color: var(--ear-gold); }
+
+  .foot-bottom{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.72rem;
+    color: rgba(244,238,216,0.5);
+  }
+  .foot-bottom a{ color: rgba(244,238,216,0.7); text-decoration: underline; }
+
+  @media (max-width: 640px){
+    .hero-inner{ grid-template-columns: 1fr; }
+    .hero-title{
+      writing-mode: horizontal-tb;
+      border-right: none;
+      border-bottom: 2px solid var(--ear-gold-deep);
+      padding-right: 0;
+      padding-bottom: 10px;
+    }
+    nav.site-nav ul{ gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="brand">
+    穂の記憶
+    <small>ANCIENT JAPAN ARCHIVE</small>
+  </div>
+  <nav class="site-nav" aria-label="サイト内ナビゲーション">
+    <ul>
+      <li><a href="index.html" aria-current="page">index</a></li>
+      <li><a href="blog.html">blog</a></li>
+      <li><a href="gallery.html">gallery</a></li>
+      <li><a href="about.html">about</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">穂<br>の<br>記<br>憶</h1>
+    <div class="hero-text">
+      <span class="hero-eyebrow">古代日本史 ARCHIVE</span>
+      <h2>稲穂が実るよりずっと前、<br>この島にあった時間について。</h2>
+      <p>縄文の土器、弥生の稲作、古墳の埴輪、飛鳥の仏教伝来、奈良の都――<span class="accent">文字になる前の日本</span>を、断片から拾い集めて記録していく個人アーカイブです。</p>
+      <p>学術的な正確さより、<span class="accent">「ここに惹かれた」という手触り</span>を大事にしています。</p>
+    </div>
+  </div>
+
+  <div class="ear-field" aria-hidden="true">
+    <svg viewBox="0 0 1200 260" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="soil" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#e9dcae" stop-opacity="0"/>
+          <stop offset="1" stop-color="#a97f1c" stop-opacity="0.18"/>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="120" width="1200" height="140" fill="url(#soil)"/>
+      <g stroke="#7a5c3e" stroke-width="2" fill="none" opacity="0.55">
+        <!-- stems -->
+        <path d="M80 260 C 76 190, 84 150, 90 110"/>
+        <path d="M180 260 C 176 200, 186 160, 196 118"/>
+        <path d="M300 260 C 296 195, 304 150, 312 112"/>
+        <path d="M430 260 C 424 200, 436 158, 448 120"/>
+        <path d="M560 260 C 556 190, 566 150, 578 108"/>
+        <path d="M700 260 C 696 200, 706 160, 718 118"/>
+        <path d="M840 260 C 836 195, 846 150, 858 110"/>
+        <path d="M980 260 C 976 200, 986 160, 998 120"/>
+        <path d="M1110 260 C 1106 190, 1116 150, 1128 112"/>
+      </g>
+      <g class="ear-group">
+        <g class="ear" style="transform-origin:90px 110px" transform="translate(0,0)">
+          <ellipse cx="90" cy="98" rx="10" ry="26" fill="#c69a2a"/>
+          <ellipse cx="82" cy="88" rx="6" ry="16" fill="#a97f1c"/>
+          <ellipse cx="98" cy="92" rx="6" ry="16" fill="#a97f1c"/>
+        </g>
+        <g class="ear" style="transform-origin:196px 118px">
+          <ellipse cx="196" cy="106" rx="10" ry="27" fill="#9caf3c"/>
+          <ellipse cx="188" cy="96" rx="6" ry="16" fill="#7c8f2a"/>
+          <ellipse cx="204" cy="100" rx="6" ry="16" fill="#7c8f2a"/>
+        </g>
+        <g class="ear" style="transform-origin:312px 112px">
+          <ellipse cx="312" cy="100" rx="10" ry="26" fill="#c69a2a"/>
+          <ellipse cx="304" cy="90" rx="6" ry="16" fill="#a97f1c"/>
+          <ellipse cx="320" cy="94" rx="6" ry="16" fill="#a97f1c"/>
+        </g>
+        <g class="ear" style="transform-origin:448px 120px">
+          <ellipse cx="448" cy="108" rx="10" ry="27" fill="#c69a2a"/>
+          <ellipse cx="440" cy="98" rx="6" ry="16" fill="#a97f1c"/>
+          <ellipse cx="456" cy="102" rx="6" ry="16" fill="#a97f1c"/>
+        </g>
+        <g class="ear" style="transform-origin:578px 108px">
+          <ellipse cx="578" cy="96" rx="10" ry="26" fill="#9caf3c"/>
+          <ellipse cx="570" cy="86" rx="6" ry="16" fill="#7c8f2a"/>
+          <ellipse cx="586" cy="90" rx="6" ry="16" fill="#7c8f2a"/>
+        </g>
+        <g class="ear" style="transform-origin:718px 118px">
+          <ellipse cx="718" cy="106" rx="10" ry="27" fill="#c69a2a"/>
+          <ellipse cx="710" cy="96" rx="6" ry="16" fill="#a97f1c"/>
+          <ellipse cx="726" cy="100" rx="6" ry="16" fill="#a97f1c"/>
+        </g>
+        <g class="ear" style="transform-origin:858px 110px">
+          <ellipse cx="858" cy="98" rx="10" ry="26" fill="#9caf3c"/>
+          <ellipse cx="850" cy="88" rx="6" ry="16" fill="#7c8f2a"/>
+          <ellipse cx="866" cy="92" rx="6" ry="16" fill="#7c8f2a"/>
+        </g>
+        <g class="ear" style="transform-origin:998px 120px">
+          <ellipse cx="998" cy="108" rx="10" ry="27" fill="#c69a2a"/>
+          <ellipse cx="990" cy="98" rx="6" ry="16" fill="#a97f1c"/>
+          <ellipse cx="1006" cy="102" rx="6" ry="16" fill="#a97f1c"/>
+        </g>
+        <g class="ear" style="transform-origin:1128px 112px">
+          <ellipse cx="1128" cy="100" rx="10" ry="26" fill="#9caf3c"/>
+          <ellipse cx="1120" cy="90" rx="6" ry="16" fill="#7c8f2a"/>
+          <ellipse cx="1136" cy="94" rx="6" ry="16" fill="#7c8f2a"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section class="intro">
+  <h2>このサイトについて</h2>
+  <p>
+    考古資料や史書の断片を手がかりに、古代日本の暮らしと信仰、technology(技術)の移り変わりを追いかけています。
+    blogでは調べたことや読んだ本の記録を日付順に、galleryでは気になった遺物・史跡の資料を、
+    aboutでは制作者について紹介しています。
+  </p>
+</section>
+
+<section class="strata">
+  <h2>時代の地層</h2>
+  <p class="lead">土を掘るように、時代を下から積み重ねて眺めてみます。</p>
+
+  <div class="era-list">
+    <div class="era" data-era="jomon">
+      <div class="era-head">
+        <span class="era-name">縄文時代</span>
+        <span class="era-period">約16,000年前 〜 紀元前10世紀頃</span>
+      </div>
+      <p>土器と狩猟採集の暮らし。縄目模様の器に、定住のはじまりが刻まれている。</p>
+    </div>
+
+    <div class="era" data-era="yayoi">
+      <div class="era-head">
+        <span class="era-name">弥生時代</span>
+        <span class="era-period">紀元前10世紀頃 〜 3世紀中頃</span>
+      </div>
+      <p>稲作と金属器の伝来。水田が広がり、集落からくにへ――このサイトの色はこの時代の稲穂から。</p>
+    </div>
+
+    <div class="era" data-era="kofun">
+      <div class="era-head">
+        <span class="era-name">古墳時代</span>
+        <span class="era-period">3世紀中頃 〜 7世紀頃</span>
+      </div>
+      <p>前方後円墳と埴輪。地方の首長たちが、土を盛って権威を形にした時代。</p>
+    </div>
+
+    <div class="era" data-era="asuka">
+      <div class="era-head">
+        <span class="era-name">飛鳥時代</span>
+        <span class="era-period">6世紀末 〜 710年</span>
+      </div>
+      <p>仏教伝来と律令国家のはじまり。海の向こうの制度と信仰が、飛鳥の地に根を張る。</p>
+    </div>
+
+    <div class="era" data-era="nara">
+      <div class="era-head">
+        <span class="era-name">奈良時代</span>
+        <span class="era-period">710年 〜 794年</span>
+      </div>
+      <p>平城京、そして『古事記』『日本書紀』の編纂。文字が、はじめてこの国の物語を刻みとめた。</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="mincho">穂の記憶 -古代日本史-</div>
+      <p>縄文から奈良まで、古代日本の記録と考察を綴る個人アーカイブです。</p>
+    </div>
+    <nav class="foot-nav" aria-label="フッターナビゲーション">
+      <ul>
+        <li><a href="index.html">index</a></li>
+        <li><a href="blog.html">blog</a></li>
+        <li><a href="gallery.html">gallery</a></li>
+        <li><a href="about.html">about</a></li>
+        <li><a href="https://azaleacreativeroom888.github.io/">Azalea Creative Room</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 穂の記憶. すべてのテキスト・イラストの生成AI学習利用を禁じます。</span>
+    <span><a href="https://azaleacreativeroom888.github.io/">← Azalea Creative Roomへ戻る</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
