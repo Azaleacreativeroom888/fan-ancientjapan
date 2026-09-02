@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>blog | 穂の記憶 -古代日本史-</title>
+<meta name="description" content="古代日本史について調べたこと、考えたことの記録。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #f4eed8;
+    --paper-deep: #ece1bd;
+    --ink: #2e2a1f;
+    --ink-soft: #55503f;
+    --ear-gold: #c69a2a;
+    --ear-gold-deep: #a97f1c;
+    --young-green: #9caf3c;
+    --young-green-deep: #7c8f2a;
+    --bronze: #7a5c3e;
+    --line: rgba(46,42,31,0.14);
+    --max: 1080px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .mincho{
+    font-family: "Shippori Mincho", serif;
+    letter-spacing: 0.04em;
+  }
+
+  a{ color: inherit; }
+
+  /* ---------- Header / Nav ---------- */
+  header.site-head{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px clamp(20px, 5vw, 56px);
+    background: rgba(244, 238, 216, 0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand{
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+  .brand small{
+    display: block;
+    font-family: "Zen Kaku Gothic New", sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  nav.site-nav ul{
+    list-style: none;
+    display: flex;
+    gap: clamp(14px, 3vw, 32px);
+    margin: 0;
+    padding: 0;
+  }
+  nav.site-nav a{
+    text-decoration: none;
+    font-size: 0.86rem;
+    letter-spacing: 0.06em;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  nav.site-nav a:hover,
+  nav.site-nav a:focus-visible{
+    border-color: var(--ear-gold-deep);
+    color: var(--ear-gold-deep);
+  }
+  nav.site-nav a[aria-current="page"]{
+    border-color: var(--young-green-deep);
+    color: var(--young-green-deep);
+  }
+
+  /* ---------- Page head ---------- */
+  .page-head{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: clamp(48px, 7vw, 76px) clamp(20px, 5vw, 56px) clamp(20px, 4vw, 32px);
+  }
+  .page-head .eyebrow{
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    color: var(--bronze);
+    margin-bottom: 14px;
+  }
+  .page-head h1{
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0 0 14px;
+  }
+  .page-head p{
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* ---------- Blog list ---------- */
+  .blog-list{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px) clamp(80px, 9vw, 120px);
+    border-top: 2px solid var(--ear-gold-deep);
+  }
+
+  .entry{
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: clamp(16px, 3vw, 40px);
+    padding: 28px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .entry:last-child{ border-bottom: none; }
+
+  .entry time{
+    font-family: "Shippori Mincho", serif;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    padding-top: 3px;
+  }
+  .entry time .y{
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--bronze);
+    margin-bottom: 4px;
+  }
+
+  .entry p{
+    margin: 0;
+    color: var(--ink);
+    max-width: 62ch;
+    font-size: 0.98rem;
+  }
+
+  @media (max-width: 560px){
+    .entry{ grid-template-columns: 1fr; gap: 6px; }
+    .entry time{ padding-top: 0; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer.site-foot{
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 56px) 28px;
+  }
+  .foot-grid{
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(244,238,216,0.18);
+  }
+  .foot-brand .mincho{ font-size: 1.15rem; }
+  .foot-brand p{
+    font-size: 0.82rem;
+    color: rgba(244,238,216,0.65);
+    max-width: 34ch;
+    margin-top: 8px;
+  }
+  .foot-nav ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+  .foot-nav a{
+    text-decoration: none;
+    font-size: 0.86rem;
+    color: rgba(244,238,216,0.85);
+  }
+  .foot-nav a:hover{ color: var(--ear-gold); }
+
+  .foot-bottom{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.72rem;
+    color: rgba(244,238,216,0.5);
+  }
+  .foot-bottom a{ color: rgba(244,238,216,0.7); text-decoration: underline; }
+
+  @media (max-width: 640px){
+    nav.site-nav ul{ gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="brand">
+    穂の記憶
+    <small>ANCIENT JAPAN ARCHIVE</small>
+  </div>
+  <nav class="site-nav" aria-label="サイト内ナビゲーション">
+    <ul>
+      <li><a href="index.html">index</a></li>
+      <li><a href="blog.html" aria-current="page">blog</a></li>
+      <li><a href="gallery.html">gallery</a></li>
+      <li><a href="about.html">about</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="page-head">
+  <span class="eyebrow">BLOG</span>
+  <h1>日々の発掘記録</h1>
+  <p>調べたこと、読んだ本、気づいたこと。新しい順に並んでいます。</p>
+</section>
+
+<section class="blog-list">
+
+  <article class="entry">
+    <time><span class="y">2026</span>08.22</time>
+    <p>『日本書紀』の編纂過程を読み返す。歴史書というより、正統性を積み上げていく作業のように見えてくる。</p>
+  </article>
+
+  <article class="entry">
+    <time><span class="y">2026</span>08.14</time>
+    <p>古墳の周濠って要は水田の技術の応用なのでは、という説を読んで妙に納得した。土木と権威は地続き。</p>
+  </article>
+
+  <article class="entry">
+    <time><span class="y">2026</span>08.05</time>
+    <p>弥生土器と縄文土器を並べて見ると、模様が減って形が整っていく過程がはっきりわかる。効率と美意識のせめぎ合い。</p>
+  </article>
+
+  <article class="entry">
+    <time><span class="y">2026</span>07.29</time>
+    <p>銅鐸の使われ方、結局よくわかっていないらしい。「わかっていない」がそのまま面白い数少ない分野。</p>
+  </article>
+
+  <article class="entry">
+    <time><span class="y">2026</span>07.20</time>
+    <p>飛鳥寺跡を訪れた記録の本を読む。礎石だけが残る場所に立つ想像をすると、時間の厚みがどっと来る。</p>
+  </article>
+
+  <article class="entry">
+    <time><span class="y">2026</span>07.11</time>
+    <p>稲作の伝来ルートについて、朝鮮半島経由説と江南経由説をあらためて整理。決着はついていないが、両方の可能性を残しておくほうが誠実な気がする。</p>
+  </article>
+
+</section>
+
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="mincho">穂の記憶 -古代日本史-</div>
+      <p>縄文から奈良まで、古代日本の記録と考察を綴る個人アーカイブです。</p>
+    </div>
+    <nav class="foot-nav" aria-label="フッターナビゲーション">
+      <ul>
+        <li><a href="index.html">index</a></li>
+        <li><a href="blog.html">blog</a></li>
+        <li><a href="gallery.html">gallery</a></li>
+        <li><a href="about.html">about</a></li>
+        <li><a href="https://azaleacreativeroom888.github.io/">Azalea Creative Room</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 穂の記憶. すべてのテキスト・イラストの生成AI学習利用を禁じます。</span>
+    <span><a href="https://azaleacreativeroom888.github.io/">← Azalea Creative Roomへ戻る</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
